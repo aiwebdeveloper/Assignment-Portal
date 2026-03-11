@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Auth | EduPortal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="submission-container" style="min-height: 100vh; align-items: center;">
+        <div class="glass-card">
+            <div id="loginBox">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Teacher <span>Login</span></h2>
+                <form onsubmit="handleAuth(event)">
+                    <div class="input-group">
+                        <label><i data-lucide="mail"></i> Email</label>
+                        <input type="email" id="authEmail" placeholder="teacher@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i data-lucide="lock"></i> Password</label>
+                        <input type="password" id="authPass" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login <i data-lucide="log-in"></i></button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                        Don't have an account? <a href="#" onclick="toggleAuth()" style="color: var(--primary);">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+
+            <div id="signupBox" class="hidden">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Teacher <span>Sign Up</span></h2>
+                <form onsubmit="handleAuth(event)">
+                    <div class="input-group">
+                        <label><i data-lucide="user"></i> Full Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i data-lucide="mail"></i> Email</label>
+                        <input type="email" placeholder="teacher@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i data-lucide="lock"></i> Password</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account <i data-lucide="user-plus"></i></button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                        Already have an account? <a href="#" onclick="toggleAuth()" style="color: var(--primary);">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        function toggleAuth() {
+            document.getElementById('loginBox').classList.toggle('hidden');
+            document.getElementById('signupBox').classList.toggle('hidden');
+        }
+        function handleAuth(e) {
+            e.preventDefault();
+            // In a real app, we'd validate against a DB
+            // For this UI demo, we'll just redirect to dashboard
+            window.location.href = 'teacher.html';
+        }
+    </script>
+</body>
+</html>

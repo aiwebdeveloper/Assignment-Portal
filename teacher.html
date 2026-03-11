@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard | EduPortal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Teacher Admin</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="teacher-btn">View Student Side</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="dashboard-grid">
+            <!-- Left Column: Student Submissions -->
+            <section class="main-content">
+                <header style="margin-bottom: 2rem;">
+                    <h2>New <span>Submissions</span></h2>
+                    <p>Review student work and assign them to categories.</p>
+                </header>
+
+                <div id="studentList" class="student-list">
+                    <!-- Dynamic students content -->
+                </div>
+
+                <div style="margin-top: 4rem;">
+                    <h2>Assigned <span>Folders</span></h2>
+                    <div id="assignedFolders" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                        <!-- Dynamic categories content -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Settings and Stats -->
+            <aside class="sidebar">
+                <div class="stats-card">
+                    <h3>Quick Stats</h3>
+                    <div class="stat-item" style="margin-top: 1rem;">
+                        <span>Pending</span>
+                        <span id="pendingCount" style="color: var(--secondary); font-weight: bold;">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Assigned</span>
+                        <span id="assignedCount" style="color: #22c55e; font-weight: bold;">0</span>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem;"><i data-lucide="settings" style="width: 18px;"></i> Group Links</h3>
+                    <div class="input-group" style="margin-bottom: 0.8rem;">
+                        <label>Category A Link</label>
+                        <input type="text" id="linkA" placeholder="WhatsApp URL">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.8rem;">
+                        <label>Category B Link</label>
+                        <input type="text" id="linkB" placeholder="WhatsApp URL">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.8rem;">
+                        <label>Category C Link</label>
+                        <input type="text" id="linkC" placeholder="WhatsApp URL">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0.8rem;">
+                        <label>Category D Link</label>
+                        <input type="text" id="linkD" placeholder="WhatsApp URL">
+                    </div>
+                </div>
+
+                <div class="glass-card" style="padding: 1.5rem; margin-top: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem;"><i data-lucide="mail" style="width: 18px;"></i> Email Template</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                        Use {name}, {group}, {link} as placeholders.
+                    </p>
+                    <textarea id="emailEditor" style="height: 150px; font-size: 0.85rem;"></textarea>
+                    <button onclick="saveConfig()" class="submit-btn" style="padding: 0.75rem; font-size: 0.9rem;">
+                        Save Settings
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
