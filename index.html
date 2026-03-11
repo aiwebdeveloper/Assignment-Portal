@@ -21,63 +21,95 @@
     <nav>
         <div class="logo">
             <i data-lucide="graduation-cap"></i>
-            <span>EduPortal</span>
+            <span>Student Auth</span>
         </div>
         <div class="nav-links">
-            <a href="auth.html" class="teacher-btn">Teacher Login</a>
+            <a href="auth.html" class="teacher-btn">Teacher Portal</a>
         </div>
     </nav>
 
-    <main>
-        <div class="hero">
-            <h1>Submit Your <span>Assignment</span></h1>
-            <p>Upload your work and get assigned to your learning group.</p>
-        </div>
-
-        <section class="submission-container">
-            <div class="glass-card submission-card">
-                <form id="submissionForm">
+    <main class="submission-container" style="min-height: 80vh; align-items: center;">
+        <div class="glass-card" style="position: relative;">
+            
+            <!-- Login -->
+            <div id="studentLoginBox">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Student <span>Login</span></h2>
+                <form id="studentLoginForm">
                     <div class="input-group">
-                        <label for="studentName"><i data-lucide="user"></i> Full Name</label>
-                        <input type="text" id="studentName" placeholder="Enter your full name" required>
+                        <label><i data-lucide="mail"></i> Email / Phone</label>
+                        <input type="text" id="studLoginEmail" placeholder="student@example.com" required>
                     </div>
-
                     <div class="input-group">
-                        <label for="whatsappNumber"><i data-lucide="phone"></i> WhatsApp Number</label>
-                        <input type="tel" id="whatsappNumber" placeholder="Enter your WhatsApp number" required>
+                        <label><i data-lucide="lock"></i> Password</label>
+                        <input type="password" id="studLoginPass" placeholder="••••••••" required>
                     </div>
-
-                    <div class="input-group">
-                        <label for="assignmentLink"><i data-lucide="link"></i> Assignment Drive Link</label>
-                        <input type="url" id="assignmentLink" placeholder="Paste your Google Drive link here" required>
+                    <div style="text-align: right; margin-top: -10px; margin-bottom: 1rem;">
+                        <a href="#" onclick="toggleStudentAuth('forgot')" style="font-size: 0.8rem; color: var(--primary);">Forgot Password?</a>
                     </div>
-
-                    <div class="input-group">
-                        <label for="notes"><i data-lucide="message-square"></i> Additional Notes</label>
-                        <textarea id="notes" placeholder="Any message for the teacher?"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        Submit Assignment <i data-lucide="arrow-right"></i>
-                    </button>
+                    <button type="submit" class="submit-btn" id="sLoginBtn">Login <i data-lucide="log-in"></i></button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                        Don't have an account? <a href="#" onclick="toggleStudentAuth('signup')" style="color: var(--primary);">Sign Up</a>
+                    </p>
                 </form>
-
-                <div id="successMessage" class="success-message hidden">
-                    <div class="icon-circle">
-                        <i data-lucide="check-circle-2"></i>
-                    </div>
-                    <h2>Submission Successful!</h2>
-                    <p>Your assignment has been received. Please wait for the teacher to check it.</p>
-                    <button onclick="resetForm()" class="secondary-btn">Submit Another</button>
-                </div>
             </div>
-        </section>
+
+            <!-- Sign Up -->
+            <div id="studentSignupBox" class="hidden">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Student <span>Sign Up</span></h2>
+                <form id="studentSignupForm">
+                    <div class="input-group">
+                        <label><i data-lucide="user"></i> Full Name</label>
+                        <input type="text" id="studRegName" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i data-lucide="phone"></i> Phone / WhatsApp</label>
+                        <input type="tel" id="studRegPhone" placeholder="03XXXXXXXXX" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i data-lucide="mail"></i> Email</label>
+                        <input type="email" id="studRegEmail" placeholder="student@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i data-lucide="lock"></i> Password</label>
+                        <input type="password" id="studRegPass" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="submit-btn" id="sRegBtn">Create Account <i data-lucide="user-plus"></i></button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                        Already have an account? <a href="#" onclick="toggleStudentAuth('login')" style="color: var(--primary);">Login</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Forgot Password -->
+            <div id="studentForgotBox" class="hidden">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Reset <span>Password</span></h2>
+                <form id="studentForgotForm">
+                    <div class="input-group">
+                        <label><i data-lucide="mail"></i> Email</label>
+                        <input type="email" id="studResetEmail" placeholder="Enter your registered email" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Reset Link</button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                        <a href="#" onclick="toggleStudentAuth('login')" style="color: var(--primary);"><i data-lucide="arrow-left" style="width:14px; vertical-align:middle;"></i> Back to Login</a>
+                    </p>
+                </form>
+            </div>
+
+        </div>
     </main>
 
     <script src="app.js"></script>
     <script>
         lucide.createIcons();
+        function toggleStudentAuth(view) {
+            document.getElementById('studentLoginBox').classList.add('hidden');
+            document.getElementById('studentSignupBox').classList.add('hidden');
+            document.getElementById('studentForgotBox').classList.add('hidden');
+            
+            if (view === 'login') document.getElementById('studentLoginBox').classList.remove('hidden');
+            if (view === 'signup') document.getElementById('studentSignupBox').classList.remove('hidden');
+            if (view === 'forgot') document.getElementById('studentForgotBox').classList.remove('hidden');
+        }
     </script>
 </body>
-
 </html>

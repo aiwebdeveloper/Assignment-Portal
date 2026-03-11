@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | EduPortal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i data-lucide="graduation-cap"></i>
+            <span>Student Portal</span>
+        </div>
+        <div class="nav-links" style="display: flex; gap: 1rem; align-items: center;">
+            <span id="studentGreeting" style="font-weight: 600; color: var(--primary);">Hello!</span>
+            <a href="index.html" onclick="logoutStudent()" class="teacher-btn" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); display: flex; align-items: center; gap: 0.5rem;">
+                Logout <i data-lucide="log-out" style="width: 16px;"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="dashboard-grid">
+            <!-- Left Column: Submit New -->
+            <section class="main-content">
+                <header style="margin-bottom: 2rem;">
+                    <h2>Submit <span>Assignment</span></h2>
+                    <p>Upload your work and wait for teacher's feedback.</p>
+                </header>
+
+                <div class="glass-card" style="margin-bottom: 2rem;">
+                    <form id="submissionForm">
+                        <div class="input-group">
+                            <label for="assignmentLink"><i data-lucide="link"></i> Assignment Drive Link</label>
+                            <input type="url" id="assignmentLink" placeholder="Paste your Google Drive link here" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="notes"><i data-lucide="message-square"></i> Additional Notes</label>
+                            <textarea id="notes" placeholder="Any message for the teacher?"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            Submit Assignment <i data-lucide="upload-cloud"></i>
+                        </button>
+                    </form>
+
+                    <div id="successMessage" class="success-message hidden">
+                        <div class="icon-circle">
+                            <i data-lucide="check-circle-2"></i>
+                        </div>
+                        <h2>Submission Successful!</h2>
+                        <p>Your assignment has been received. Please check back for updates.</p>
+                        <button onclick="resetForm()" class="secondary-btn">Submit Another</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: My Submissions & Feedback -->
+            <aside class="sidebar">
+                <div class="stats-card">
+                    <h3 style="margin-bottom: 1rem;"><i data-lucide="folder" style="width: 18px; vertical-align: middle;"></i> My Submissions</h3>
+                    <div id="studentSubmissionsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
